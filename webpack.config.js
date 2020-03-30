@@ -3,22 +3,24 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const BundleAnalyzer = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const baseConfig = {
-  entry: "./src/index.js",
+  entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js"
   },
   resolve: {
-    extensions: [".jsx", ".js"]
+    extensions: [".tsx", ".ts", ".js"]
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        test: /\.tsx?$/,
+        loader: "babel-loader"
+      },
+      {
+        test: /\.js$/,
+        use: ["source-map-loader"],
+        enforce: "pre"
       },
       {
         test: /\.html$/,

@@ -5,7 +5,8 @@ const Title = styled.h1`
   font-size: 100px;
 `;
 
-export default () => {
+export default (): React.ReactElement => {
+  console.error("BOOM");
   return (
     <div>
       <Title>app</Title>
